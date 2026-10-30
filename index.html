@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#120a07">
+  <title>F.R.I.D.A.Y. Assistant</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-ai="friday">
+  <section id="lock" class="screen active">
+    <div class="orbs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="lock-time">
+      <div id="lockClock">00:00</div>
+      <div id="lockDate"></div>
+    </div>
+    <div class="lock-logo-wrap">
+      <img id="lockLogo" class="lock-logo" src="Friday.jpg" alt="FRIDAY logo">
+      <span id="lockLogoFallback" class="logo-fallback lock-fallback">FRIDAY</span>
+    </div>
+    <form id="unlockForm" class="pin-row" autocomplete="off">
+      <input id="pinInput" type="password" placeholder="Enter password or PIN" aria-label="Password or PIN">
+      <button type="submit" class="arrow-btn" aria-label="Unlock">➜</button>
+    </form>
+    <p id="lockMsg" class="lock-msg" aria-live="polite"></p>
+  </section>
+
+  <section id="home" class="screen">
+    <aside class="sidebar">
+      <div class="side-brand">
+        <img id="sideLogo" src="Friday.jpg" alt="Selected assistant logo">
+        <span id="sideLogoFallback" class="logo-fallback">FRIDAY</span>
+      </div>
+
+      <nav class="tabs">
+        <button class="tab active" data-tab="command">AI Command</button>
+        <button class="tab" data-tab="voice">Voice Assistant</button>
+        <button class="tab" data-tab="tasks">Tasks <span id="taskCount" class="badge">0</span></button>
+        <button class="tab" data-tab="reminders">Reminders <span id="remCount" class="badge">0</span></button>
+      </nav>
+
+      <div class="ai-switch">
+        <p class="switch-title">Assistant</p>
+        <button class="ai-btn active" data-ai="friday">FRIDAY</button>
+        <button class="ai-btn" data-ai="jarvis">JARVIS</button>
+        <button class="ai-btn" data-ai="veronica">VERONICA</button>
+        <button class="ai-btn" data-ai="ultron">ULTRON</button>
+      </div>
+
+      <div id="locStatus" class="loc-status">Location: not shared</div>
+      <button id="lockBtn" class="lock-btn">Lock</button>
+    </aside>
+
+    <main class="stage">
+      <div class="panel active" id="panel-command">
+        <h2>AI Command <span id="activeAssistantLabel" class="assistant-label">· FRIDAY</span></h2>
+        <div id="chatLog" class="chat-log" aria-live="polite"></div>
+        <div class="chips">
+          <button class="chip" data-q="What is the weather now?">Weather now</button>
+          <button class="chip" data-q="What is the time now?">Time now</button>
+          <button class="chip" data-q="What are the restaurants near me?">Restaurants near me</button>
+        </div>
+        <form id="cmdForm" class="cmd-row" autocomplete="off">
+          <input id="cmdInput" type="text" placeholder="Ask anything, or say “add task buy milk”">
+          <button type="submit" class="arrow-btn" aria-label="Send">➜</button>
+        </form>
+      </div>
+
+      <div class="panel" id="panel-voice">
+        <h2>Voice Assistant</h2>
+        <div class="voice-stage">
+          <div class="logo-wrap" id="voiceLogoWrap">
+            <img id="voiceLogo" src="Friday.jpg" alt="Selected assistant logo">
+            <span id="voiceLogoFallback" class="logo-fallback voice-fallback">FRIDAY</span>
+          </div>
+          <p id="voiceStatus" class="voice-status">Tap the mic and speak</p>
+          <p id="voiceHeard" class="voice-heard"></p>
+          <button id="micBtn" class="mic-btn" aria-label="Start listening">🎙</button>
+          <p id="voiceName" class="voice-name"></p>
+          <p class="voice-note">Voice availability depends on your browser and installed system voices.</p>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-tasks">
+        <h2>Tasks</h2>
+        <form id="taskForm" class="cmd-row" autocomplete="off">
+          <input id="taskInput" type="text" placeholder="Add a task">
+          <button type="submit" class="solid-btn">Add task</button>
+        </form>
+        <ul id="taskList" class="item-list"></ul>
+      </div>
+
+      <div class="panel" id="panel-reminders">
+        <h2>Reminders</h2>
+        <form id="remForm" class="cmd-row" autocomplete="off">
+          <input id="remText" type="text" placeholder="Remind me to…">
+          <input id="remTime" type="datetime-local" aria-label="Reminder time">
+          <button type="submit" class="solid-btn">Add reminder</button>
+        </form>
+        <ul id="remList" class="item-list"></ul>
+      </div>
+    </main>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
